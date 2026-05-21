@@ -1,0 +1,373 @@
+body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: Georgia, serif;
+            overflow: hidden;
+        }
+
+        /* TOPBAR */
+
+        #topbar {
+            height: 60px;
+            background: #1b1b1b;
+            border-bottom: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .menuBtn {
+            padding: 10px 20px;
+            background: #2a2a2a;
+            border: 1px solid #555;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .menuBtn:hover {
+            background: #444;
+        }
+
+        /* MAIN LAYOUT */
+
+        #layout {
+            display: grid;
+            grid-template-columns: 220px 1fr 250px;
+            height: calc(100vh - 60px);
+        }
+
+        /* LEFT PANEL */
+
+        #leftPanel {
+            background: #181818;
+            border-right: 2px solid #333;
+            padding: 15px;
+        }
+
+        #portrait {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 3px solid #555;
+        }
+
+        .bar {
+            width: 100%;
+            height: 28px;
+            background: #222;
+            border: 1px solid #555;
+            margin-top: 15px;
+        }
+
+        .fill {
+            height: 100%;
+            text-align: center;
+            line-height: 28px;
+            color: white;
+        }
+
+        .hp {
+            background: darkred;
+            width: 100%;
+        }
+
+        .mana {
+            background: darkblue;
+            width: 70%;
+        }
+
+        .xp {
+            background: darkgreen;
+            width: 20%;
+        }
+
+        /* CENTER */
+
+        #center {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        /* WORLD SCREEN */
+
+ /* WORLD SCREEN - Most már tiszta, nem hordozza a hátteret */
+#worldScreen {
+    text-align: center;
+    border: none;
+    position: relative; /* Ez kell ahhoz, hogy a benne lévő abszolút elemek hozzá igazodjanak */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* AZ ÚJ FIX UI KERET STÍLUSA */
+.ui-fixed-frame {
+    position: absolute;       /* Kiszabadítja a dokumentum folyamból */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-image: url("../assets/ui/frames/ui_main_frame.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    pointer-events: none;     /* KRITIKUS: Átengedi a kattintásokat, így a gombok kattinthatóak maradnak alatta/felette! */
+    z-index: 1;               /* A háttérben tartja a keretet */
+}
+
+/* Biztosítjuk, hogy a játék elemei (szövegek, képek, gombok) a fix keret FELETT jelenjenek meg */
+#locationName, #locationImage, #locationDescription, #controls, #dungeonButtonContainer {
+    position: relative;
+    z-index: 2;
+}
+
+        #locationImage {
+    width: 407px;  /* vagy amekkorára legutóbb beállítottad */
+    height: 416px;
+    object-fit: cover;
+
+    /* MOZGATÁS MARGÓKKAL: */
+    margin-top: 79px;    /* Távolság a felette lévő címtől (Főtér) */
+    margin-bottom: 32px; /* Távolság az alatta lévő leírástól */
+    
+    /* Ha nem középen van és el akarod tolni oldalra: */
+    position: relative;
+    left: -48px;         /* Negatív értékkel balra megy, pozitívval (pl. 50px) jobbra */
+}
+
+        #locationDescription {
+            margin-top: 80px;
+            left: -195px;
+            font-size: 18px;
+        }
+
+        /* CONTROLS */
+
+       /* A gombok közös tárolója - egy fix méretű doboz a képernyő alján */
+#controls {
+    position: absolute;
+    bottom: 100px;         /* Távolság a játéktér aljától */
+    left: 50%;            /* Középre igazítás alapja */
+    transform: translateX(-50%); /* Hajszálpontosan középre teszi a csoportot */
+    
+    width: 200px;         /* Ekkora területen belül fogod szétdobálni a gombokat */
+    height: 200px;        /* Ha nagyobb távolságokat akarsz, növeld ezt a dobozt! */
+    
+    z-index: 10;
+}
+
+/* Minden gomb alapértelmezetten abszolút pozíciót kap a dobozon belül */
+.arrowBtn {
+    position: absolute;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+/* --- EGYEDI POZÍCIÓK (Ezeket a számokat írd át kedved szerint!) --- */
+
+#north {
+    top: -36px;            /* 10 pixelre a doboz tetejétől */
+    left: 26%;
+    transform: translateX(-50%); /* Középre teszi az északi nyilat */
+}
+
+#west {
+    left: -43px;           /* 10 pixelre a doboz bal szélétől */
+    top: 28%;
+    transform: translateY(-50%); /* Függőlegesen középre teszi */
+}
+
+#east {
+    right: 58px;          /* 10 pixelre a doboz jobb szélétől */
+    top: 28%;
+    transform: translateY(-50%); /* Függőlegesen középre teszi */
+}
+
+#south {
+    bottom: 53px;         /* 10 pixelre a doboz aljától */
+    left: 25%;
+    transform: translateX(-50%); /* Középre teszi a déli nyilat */
+}
+
+/* Méretezzük a gombban lévő képet */
+.arrowBtn img {
+    width: 69px;            /* Itt állíthatod be, milyen széles legyen a nyíl (pl. 50px) */
+    height: auto;           /* Megtartja az arányokat */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ha a gomb le van tiltva (nem mehetsz arra) */
+.arrowBtn:disabled {
+    opacity: 0.25;          /* Elhalványítja a képet */
+    cursor: default;
+}
+
+/* Opcionális: kis interakció, ha ráviszed az egeret vagy rákattintasz */
+.arrowBtn:hover:not(:disabled) {
+    filter: brightness(1.2); /* Kicsit felvillan a kép */
+}
+
+.arrowBtn:active:not(:disabled) {
+    transform: scale(0.95);  /* Kicsit benyomódik kattintáskor */
+}
+
+        /* CHARACTER SCREEN */
+
+        #characterGrid {
+            display: flex;
+            gap: 50px;
+            margin-top: 30px;
+        }
+
+        #equipment {
+            display: grid;
+            grid-template-columns: repeat(3, 90px);
+            gap: 10px;
+        }
+
+        .equipSlot {
+            width: 90px;
+            height: 90px;
+            background: #2a2a2a;
+            border: 2px solid #555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #stats {
+            font-size: 20px;
+        }
+
+        /* INVENTORY */
+
+        #inventoryGrid {
+            display: grid;
+            grid-template-columns: repeat(5, 90px);
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .inventorySlot {
+            width: 90px;
+            height: 90px;
+            background: #2a2a2a;
+            border: 2px solid #555;
+        }
+
+        /* RIGHT PANEL */
+
+        #rightPanel {
+            background: #181818;
+            border-left: 2px solid #333;
+            padding: 15px;
+        }
+
+        #chat {
+            height: 300px;
+            background: #111;
+            border: 1px solid #444;
+            padding: 10px;
+        }
+
+        /* LOGIN SCREEN */
+
+        #loginScreen {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.8),
+                    rgba(0, 0, 0, 0.8)),
+                url('../assets/locations/town_square.jpg');
+
+            background-size: cover;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            z-index: 999999;
+        }
+
+        #loginBox {
+
+            width: 400px;
+
+            background: rgba(20, 20, 20, 0.95);
+
+            border: 3px solid #555;
+
+            padding: 40px;
+
+            text-align: center;
+        }
+
+        #loginBox h1 {
+
+            margin-bottom: 30px;
+        }
+
+        #loginBox input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+
+            background: #222;
+
+            border: 1px solid #555;
+
+            color: white;
+
+            font-size: 18px;
+
+            box-sizing: border-box;
+        }
+
+        #loginBox button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 10px;
+
+            background: #333;
+
+            border: 1px solid #666;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        #loginBox button:hover {
+
+            background: #555;
+        }

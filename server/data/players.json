@@ -1,13 +1,13 @@
 {
   "asd": {
     "password": "asd",
-    "level": 28,
-    "xp": 0,
-    "strength": 25,
-    "defense": 20,
+    "level": 49,
+    "xp": 75,
+    "strength": 33,
+    "defense": 32,
     "agility": 6,
     "intelligence": 4,
     "luck": 3,
-    "statPoints": 0
+    "statPoints": 1
   }
 }
