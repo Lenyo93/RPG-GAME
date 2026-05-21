@@ -330,25 +330,7 @@
 
         <div id="leftPanel">
 
-            <img id="portrait" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167">
 
-            <div class="bar">
-                <div class="fill hp">
-                    100 / 100 HP
-                </div>
-            </div>
-
-            <div class="bar">
-                <div class="fill mana">
-                    70 / 100 Mana
-                </div>
-            </div>
-
-            <div class="bar">
-                <div class="fill xp">
-                    20%
-                </div>
-            </div>
 
         </div>
 
@@ -427,16 +409,62 @@
 
                     <div id="stats">
 
-                        <p>⚔ Erő: 10</p>
-                        <p>🛡 Védelem: 8</p>
-                        <p>🎯 Ügyesség: 6</p>
-                        <p>🧠 Intelligencia: 4</p>
-                        <p>🍀 Szerencse: 3</p>
+                        <p>
+                            ⚔ Erő:
+                            <span id="strengthStat">10</span>
+
+                            <button onclick="addStat('strength')">
+                                +
+                            </button>
+                        </p>
+
+                        <p>
+                            🛡 Védelem:
+                            <span id="defenseStat">8</span>
+
+                            <button onclick="addStat('defense')">
+                                +
+                            </button>
+                        </p>
+
+                        <p>
+                            🎯 Ügyesség:
+                            <span id="agilityStat">6</span>
+
+                            <button onclick="addStat('agility')">
+                                +
+                            </button>
+                        </p>
+
+                        <p>
+                            🧠 Intelligencia:
+                            <span id="intelligenceStat">4</span>
+
+                            <button onclick="addStat('intelligence')">
+                                +
+                            </button>
+                        </p>
+
+                        <p>
+                            🍀 Szerencse:
+                            <span id="luckStat">3</span>
+
+                            <button onclick="addStat('luck')">
+                                +
+                            </button>
+                        </p>
 
                         <hr>
 
-                        <p>Szint: 1</p>
-                        <p>XP: 200 / 1000</p>
+                        <p id="characterLevel">
+                            Szint: 1
+                        </p>
+                        <p id="statPointsText">
+                            Képességpont: 0
+                        </p>
+                        <p id="characterXp">
+                            XP: 0 / 100
+                        </p>
                         <p>Arany: 50</p>
 
                     </div>
@@ -502,8 +530,8 @@
                 text-align:center;
             ">
 
-                    <h1>
-                        TesztJátékos
+                    <h1 id="playerLevelText">
+                    
                     </h1>
 
                     <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167" width="320" height="420"
@@ -518,20 +546,31 @@
 
                         <div class="bar">
 
-                            <div class="fill hp" style="width:100%;">
+                            <div class="fill hp" id="playerHp" style="
+        width:100%;
+        transition:0.3s;
+    ">
                                 100 / 100 HP
                             </div>
-
                         </div>
 
                         <div class="bar">
 
-                            <div class="fill mana" style="width:70%;">
+                            <div class="fill mana" id="playerMana" style="width:70%;">
                                 70 / 100 Mana
                             </div>
 
                         </div>
+                        <div class="bar">
 
+                            <div class="fill xp" id="xpBar" style="
+            width:0%;
+            transition:0.3s;
+        ">
+                                0 / 100 XP
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
