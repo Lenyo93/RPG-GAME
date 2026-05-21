@@ -99,13 +99,13 @@ function renderLocation() {
     setupButtons(location)
 
     const dungeonContainer =
-    document.getElementById(
-        'dungeonButtonContainer'
-    )
+        document.getElementById(
+            'dungeonButtonContainer'
+        )
 
-if (currentPosition === 'dungeon_entrance') {
+    if (currentPosition === 'dungeon_entrance') {
 
-    dungeonContainer.innerHTML = `
+        dungeonContainer.innerHTML = `
 
         <br>
 
@@ -116,11 +116,11 @@ if (currentPosition === 'dungeon_entrance') {
             ⚔ Belépés a dungeonbe
         </button>
     `
-}
-else {
+    }
+    else {
 
-    dungeonContainer.innerHTML = ''
-}
+        dungeonContainer.innerHTML = ''
+    }
 }
 
 function setupButtons(location) {
@@ -206,4 +206,12 @@ function attackMonster() {
         ).innerHTML =
             'A szörny meghalt! +25 XP'
     }
+}
+/* LOGIN */
+
+function login() {
+
+    document.getElementById(
+        'loginScreen'
+    ).style.display = 'none'
 }

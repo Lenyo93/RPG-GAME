@@ -5,12 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <title>Larkinor RPG</title>
+    <title>RPG-GAME</title>
 
     <script src="/socket.io/socket.io.js"></script>
 
     <style>
-
         body {
             margin: 0;
             background: #111;
@@ -150,7 +149,7 @@
             border: 2px solid #333;
             cursor: default;
         }
-        
+
 
         /* CHARACTER SCREEN */
 
@@ -212,6 +211,93 @@
             padding: 10px;
         }
 
+        /* LOGIN SCREEN */
+
+        #loginScreen {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.8),
+                    rgba(0, 0, 0, 0.8)),
+                url('assets/locations/town_square.jpg');
+
+            background-size: cover;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            z-index: 999999;
+        }
+
+        #loginBox {
+
+            width: 400px;
+
+            background: rgba(20, 20, 20, 0.95);
+
+            border: 3px solid #555;
+
+            padding: 40px;
+
+            text-align: center;
+        }
+
+        #loginBox h1 {
+
+            margin-bottom: 30px;
+        }
+
+        #loginBox input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+
+            background: #222;
+
+            border: 1px solid #555;
+
+            color: white;
+
+            font-size: 18px;
+
+            box-sizing: border-box;
+        }
+
+        #loginBox button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 10px;
+
+            background: #333;
+
+            border: 1px solid #666;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        #loginBox button:hover {
+
+            background: #555;
+        }
     </style>
 
 </head>
@@ -222,24 +308,15 @@
 
     <div id="topbar">
 
-        <button
-            class="menuBtn"
-            onclick="showScreen('worldScreen')"
-        >
+        <button class="menuBtn" onclick="showScreen('worldScreen')">
             Világ
         </button>
 
-        <button
-            class="menuBtn"
-            onclick="showScreen('characterScreen')"
-        >
+        <button class="menuBtn" onclick="showScreen('characterScreen')">
             Karakter
         </button>
 
-        <button
-            class="menuBtn"
-            onclick="showScreen('inventoryScreen')"
-        >
+        <button class="menuBtn" onclick="showScreen('inventoryScreen')">
             Inventory
         </button>
 
@@ -253,10 +330,7 @@
 
         <div id="leftPanel">
 
-            <img
-                id="portrait"
-                src="https://images.unsplash.com/photo-1511367461989-f85a21fda167"
-            >
+            <img id="portrait" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167">
 
             <div class="bar">
                 <div class="fill hp">
@@ -290,10 +364,7 @@
                     Főtér
                 </h1>
 
-                <img
-                    id="locationImage"
-                    src="assets/locations/town_square.jpg"
-                >
+                <img id="locationImage" src="assets/locations/town_square.jpg">
 
                 <p id="locationDescription">
                     A város központja.
@@ -399,12 +470,9 @@
             </div>
 
         </div>
-<!-- DUNGEON SCREEN -->
+        <!-- DUNGEON SCREEN -->
 
-<div
-    class="screen"
-    id="dungeonScreen"
-    style="
+        <div class="screen" id="dungeonScreen" style="
         position:absolute;
         top:60px;
         left:0;
@@ -414,195 +482,150 @@
         z-index:999;
         display:none;
         overflow:hidden;
-    "
->
+    ">
 
-    <!-- COMBAT AREA -->
+            <!-- COMBAT AREA -->
 
-    <div
-        style="
+            <div style="
             width:100%;
             height:100%;
             display:flex;
             justify-content:center;
             align-items:center;
             gap:180px;
-        "
-    >
+        ">
 
-        <!-- PLAYER -->
+                <!-- PLAYER -->
 
-        <div
-            style="
+                <div style="
                 width:350px;
                 text-align:center;
-            "
-        >
+            ">
 
-            <h1>
-                TesztJátékos
-            </h1>
+                    <h1>
+                        TesztJátékos
+                    </h1>
 
-            <img
-                src="https://images.unsplash.com/photo-1511367461989-f85a21fda167"
-                width="320"
-                height="420"
-                style="
+                    <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167" width="320" height="420"
+                        style="
                     object-fit:cover;
                     border:4px solid #555;
-                "
-            >
+                ">
 
-            <div
-                style="
+                    <div style="
                     margin-top:25px;
-                "
-            >
+                ">
 
-                <div class="bar">
+                        <div class="bar">
 
-                    <div
-                        class="fill hp"
-                        style="width:100%;"
-                    >
-                        100 / 100 HP
+                            <div class="fill hp" style="width:100%;">
+                                100 / 100 HP
+                            </div>
+
+                        </div>
+
+                        <div class="bar">
+
+                            <div class="fill mana" style="width:70%;">
+                                70 / 100 Mana
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
 
-                <div class="bar">
+                <!-- CENTER COMBAT -->
 
-                    <div
-                        class="fill mana"
-                        style="width:70%;"
-                    >
-                        70 / 100 Mana
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- CENTER COMBAT -->
-
-        <div
-            style="
+                <div style="
                 text-align:center;
                 width:300px;
-            "
-        >
+            ">
 
-            <h1>Harc</h1>
+                    <h1>Harc</h1>
 
-            <button
-                class="menuBtn"
-                onclick="attackMonster()"
-                style="
+                    <button class="menuBtn" onclick="attackMonster()" style="
                     width:220px;
                     height:60px;
                     font-size:22px;
                     margin-bottom:20px;
-                "
-            >
-                ⚔ Támadás
-            </button>
+                ">
+                        ⚔ Támadás
+                    </button>
 
-            <br>
+                    <br>
 
-            <button
-                class="menuBtn"
-                style="
+                    <button class="menuBtn" style="
                     width:220px;
                     height:60px;
                     font-size:22px;
                     margin-bottom:20px;
-                "
-            >
-                ✨ Varázslat
-            </button>
+                ">
+                        ✨ Varázslat
+                    </button>
 
-            <br>
+                    <br>
 
-            <button
-                class="menuBtn"
-                style="
+                    <button class="menuBtn" style="
                     width:220px;
                     height:60px;
                     font-size:22px;
                     margin-bottom:20px;
-                "
-            >
-                🧪 Ital
-            </button>
+                ">
+                        🧪 Ital
+                    </button>
 
-            <br>
+                    <br>
 
-            <button
-                class="menuBtn"
-                onclick="leaveDungeon()"
-                style="
+                    <button class="menuBtn" onclick="leaveDungeon()" style="
                     width:220px;
                     height:60px;
                     font-size:22px;
-                "
-            >
-                🏃 Menekülés
-            </button>
+                ">
+                        🏃 Menekülés
+                    </button>
 
-            <div
-                id="combatLog"
-                style="
+                    <div id="combatLog" style="
                     margin-top:40px;
                     font-size:24px;
-                "
-            >
+                ">
 
-                Egy szörny jelent meg...
+                        Egy szörny jelent meg...
 
-            </div>
+                    </div>
 
-        </div>
+                </div>
 
-        <!-- MONSTER -->
+                <!-- MONSTER -->
 
-        <div
-            style="
+                <div style="
                 width:350px;
                 text-align:center;
-            "
-        >
+            ">
 
-            <h1 id="monsterName">
-                Csontváz Harcos
-            </h1>
+                    <h1 id="monsterName">
+                        Csontváz Harcos
+                    </h1>
 
-            <img
-                id="monsterImage"
-                src="https://images.unsplash.com/photo-1560807707-8cc77767d783"
-                width="320"
-                height="420"
-                style="
+                    <img id="monsterImage" src="https://images.unsplash.com/photo-1560807707-8cc77767d783" width="320"
+                        height="420" style="
                     object-fit:cover;
                     border:4px solid #555;
-                "
-            >
+                ">
 
-            <div
-                style="
+                    <div style="
                     margin-top:25px;
-                "
-            >
+                ">
 
-                <div class="bar">
+                        <div class="bar">
 
-                    <div
-                        class="fill hp"
-                        id="monsterHpBar"
-                        style="width:100%;"
-                    >
-                        100 / 100 HP
+                            <div class="fill hp" id="monsterHpBar" style="width:100%;">
+                                100 / 100 HP
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -610,33 +633,48 @@
             </div>
 
         </div>
+
+        <script>
+
+            function showScreen(screenId) {
+
+                const screens =
+                    document.querySelectorAll('.screen')
+
+                screens.forEach(screen => {
+
+                    screen.style.display = 'none'
+                })
+
+                document.getElementById(screenId)
+                    .style.display = 'block'
+            }
+
+            showScreen('worldScreen')
+
+        </script>
+
+        <script src="game.js"></script>
+
+</body>
+<!-- LOGIN SCREEN -->
+
+<div id="loginScreen">
+
+    <div id="loginBox">
+
+        <h1>RPG-GAME</h1>
+
+        <input type="text" id="username" placeholder="Felhasználónév">
+
+        <input type="password" id="password" placeholder="Jelszó">
+
+        <button onclick="login()">
+            Belépés
+        </button>
 
     </div>
 
 </div>
-
-    <script>
-
-        function showScreen(screenId) {
-
-            const screens =
-                document.querySelectorAll('.screen')
-
-            screens.forEach(screen => {
-
-                screen.style.display = 'none'
-            })
-
-            document.getElementById(screenId)
-                .style.display = 'block'
-        }
-
-        showScreen('worldScreen')
-
-    </script>
-
-    <script src="game.js"></script>
-
-</body>
 
 </html>
