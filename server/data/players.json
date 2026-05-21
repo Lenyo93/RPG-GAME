@@ -9,6 +9,7 @@
     "intelligence": 4,
     "luck": 3,
     "statPoints": 0
+<<<<<<< HEAD
   },
   "Salangar": {
     "password": "asd123",
@@ -20,5 +21,7 @@
     "intelligence": 4,
     "luck": 3,
     "statPoints": 0
+=======
+>>>>>>> 57e6f9347184d1f582b5f8c917a6a6b8d9c84cb5
   }
 }

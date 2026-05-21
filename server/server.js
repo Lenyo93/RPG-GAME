@@ -93,14 +93,55 @@ io.on('connection', (socket) => {
 
     socket.on('login', (data) => {
 
-        const players =
-            loadPlayers()
+    const players =
+        loadPlayers()
 
-        const username =
-            data.username
+    const username =
+        data.username
 
-        const password =
-            data.password
+    const password =
+        data.password
+
+    if (!players[username]) {
+
+        players[username] = {
+
+            password: password,
+
+            level: 1,
+            xp: 0,
+
+            strength: 10,
+            defense: 8,
+            agility: 6,
+            intelligence: 4,
+            luck: 3,
+
+            statPoints: 0
+        }
+
+        savePlayers(players)
+    }
+
+    if (
+        players[username].password
+        !== password
+    ) {
+
+        socket.emit(
+            'loginError',
+            'Hibás jelszó!'
+        )
+
+        return
+    }
+
+    socket.emit(
+        'loginSuccess',
+        players[username]
+    )
+})
+
 
         /* REGISTER */
 
