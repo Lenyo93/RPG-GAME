@@ -93,55 +93,14 @@ io.on('connection', (socket) => {
 
     socket.on('login', (data) => {
 
-    const players =
-        loadPlayers()
+        const players =
+            loadPlayers()
 
-    const username =
-        data.username
+        const username =
+            data.username
 
-    const password =
-        data.password
-
-    if (!players[username]) {
-
-        players[username] = {
-
-            password: password,
-
-            level: 1,
-            xp: 0,
-
-            strength: 10,
-            defense: 8,
-            agility: 6,
-            intelligence: 4,
-            luck: 3,
-
-            statPoints: 0
-        }
-
-        savePlayers(players)
-    }
-
-    if (
-        players[username].password
-        !== password
-    ) {
-
-        socket.emit(
-            'loginError',
-            'Hibás jelszó!'
-        )
-
-        return
-    }
-
-    socket.emit(
-        'loginSuccess',
-        players[username]
-    )
-})
-
+        const password =
+            data.password
 
         /* REGISTER */
 
@@ -205,46 +164,46 @@ io.on('connection', (socket) => {
 
     socket.on('savePlayer', (data) => {
 
-    console.log(
-        'SAVE ÉRKEZETT:',
-        data
-    )
-
-    const players =
-        loadPlayers()
-
-    if (!players[data.username]) {
-
         console.log(
-            'NINCS ILYEN USER'
+            'SAVE ÉRKEZETT:',
+            data
         )
 
-        return
-    }
+        const players =
+            loadPlayers()
 
-    players[data.username] = {
+        if (!players[data.username]) {
 
-        ...players[data.username],
+            console.log(
+                'NINCS ILYEN USER'
+            )
 
-        level: data.level,
-        xp: data.xp,
+            return
+        }
 
-        strength: data.strength,
-        defense: data.defense,
-        agility: data.agility,
-        intelligence: data.intelligence,
-        luck: data.luck,
+        players[data.username] = {
 
-        statPoints: data.statPoints
-    }
+            ...players[data.username],
 
-    savePlayers(players)
+            level: data.level,
+            xp: data.xp,
 
-    console.log(
-        data.username +
-        ' ELMENTVE'
-    )
-})
+            strength: data.strength,
+            defense: data.defense,
+            agility: data.agility,
+            intelligence: data.intelligence,
+            luck: data.luck,
+
+            statPoints: data.statPoints
+        }
+
+        savePlayers(players)
+
+        console.log(
+            data.username +
+            ' ELMENTVE'
+        )
+    })
 
     /* =========================
        MULTIPLAYER
