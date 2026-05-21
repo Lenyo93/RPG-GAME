@@ -1,0 +1,24 @@
+{
+  "asd": {
+    "password": "asd",
+    "level": 26,
+    "xp": 0,
+    "strength": 23,
+    "defense": 20,
+    "agility": 6,
+    "intelligence": 4,
+    "luck": 3,
+    "statPoints": 0
+  },
+  "Salangar": {
+    "password": "asd123",
+    "level": 2,
+    "xp": 0,
+    "strength": 11,
+    "defense": 8,
+    "agility": 6,
+    "intelligence": 4,
+    "luck": 3,
+    "statPoints": 0
+  }
+}
