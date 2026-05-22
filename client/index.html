@@ -7,11 +7,11 @@
 
     <title>RPG-GAME</title>
 
-    <script src="/socket.io/socket.io.js"></script>
+    
 
 
-        <link rel="stylesheet" href="css/style.css">
-   
+    <link rel="stylesheet" href="css/style.css">
+
 
 </head>
 
@@ -54,7 +54,7 @@
             <!-- WORLD -->
 
             <div class="screen" id="worldScreen">
-            <div class="ui-fixed-frame"></div>
+                <div class="ui-fixed-frame"></div>
                 <h1 id="locationName">
                     Főtér
                 </h1>
@@ -68,25 +68,25 @@
 
                 <div id="controls">
 
-    <button class="arrowBtn" id="north">
-        <img src="assets/ui/buttons/Button_North.png" alt="Észak">
-    </button>
+                    <button class="arrowBtn" id="north">
+                        <img src="assets/ui/buttons/Button_North.png" alt="Észak">
+                    </button>
 
-    <button class="arrowBtn" id="west">
-        <img src="assets/ui/buttons/Button_West.png" alt="Nyugat">
-    </button>
+                    <button class="arrowBtn" id="west">
+                        <img src="assets/ui/buttons/Button_West.png" alt="Nyugat">
+                    </button>
 
-    <button class="arrowBtn" id="east">
-        <img src="assets/ui/buttons/Button_East.png" alt="Kelet">
-    </button>
+                    <button class="arrowBtn" id="east">
+                        <img src="assets/ui/buttons/Button_East.png" alt="Kelet">
+                    </button>
 
-    <button class="arrowBtn" id="south">
-        <img src="assets/ui/buttons/Button_South.png" alt="Dél">
-    </button>
+                    <button class="arrowBtn" id="south">
+                        <img src="assets/ui/buttons/Button_South.png" alt="Dél">
+                    </button>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
             <!-- CHARACTER -->
 
@@ -236,7 +236,7 @@
             ">
 
                     <h1 id="playerLevelText">
-                    
+
                     </h1>
 
                     <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167" width="320" height="420"
@@ -378,47 +378,53 @@
 
         </div>
 
-        <script>
+    </div> <!-- layout -->
 
-            function showScreen(screenId) {
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen">
 
-                const screens =
-                    document.querySelectorAll('.screen')
+        <div id="loginBox">
 
-                screens.forEach(screen => {
+            <h1>RPG-GAME</h1>
 
-                    screen.style.display = 'none'
-                })
+            <input type="text" id="username" placeholder="Felhasználónév">
 
-                document.getElementById(screenId)
-                    .style.display = 'block'
-            }
+            <input type="password" id="password" placeholder="Jelszó">
 
-            showScreen('worldScreen')
+            <button onclick="login()">
+                Belépés
+            </button>
 
-        </script>
-
-        <script src="game.js"></script>
-
-</body>
-<!-- LOGIN SCREEN -->
-
-<div id="loginScreen">
-
-    <div id="loginBox">
-
-        <h1>RPG-GAME</h1>
-
-        <input type="text" id="username" placeholder="Felhasználónév">
-
-        <input type="password" id="password" placeholder="Jelszó">
-
-        <button onclick="login()">
-            Belépés
-        </button>
+        </div>
 
     </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
 
-</div>
+    <script src="js/player.js"></script>
+
+    <script src="js/locations.js"></script>
+
+    <script src="js/monsters.js"></script>
+
+    <script src="js/ui.js"></script>
+
+    <script src="js/world.js"></script>
+
+    <script src="js/combat.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/stats.js"></script>
+
+    <script src="js/save.js"></script>
+
+    <script src="js/main.js"></script>
+
+
+</body>
+
+
+
 
 </html>
